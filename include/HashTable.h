@@ -4,7 +4,7 @@
 
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
-#define M 100;
+#define M 100
 
 typedef struct Node {
     int key;
@@ -21,13 +21,15 @@ typedef struct HashTable {
 unsigned int hash(int key);
 unsigned int universal_hash(int x);
 HashTable* createHashTable();
-unsigned int stringToInt(const char *word);
-int insert(HashTable *hashTable,char* word, char *value);
-int insertUniversal(HashTable *hashTable,char* word, char *value);
-char* search(HashTable *hashTable, char* word);
-char* searchUniversal(HashTable *hashTable, char* word);
-void delete(HashTable *hashTable, char* word);
-void deleteUniversal(HashTable *hashTable, char* word);
+int insert(HashTable *hashTable,int key, char *value);
+int insertUniversal(HashTable *hashTable,int key, char *value);
+char* search(HashTable *hashTable, int key);
+char* searchUniversal(HashTable *hashTable, int key);
+void delete(HashTable *hashTable, int key);
+void deleteUniversal(HashTable *hashTable, int key);
+void printHashTable(HashTable *hashTable);
+int maxEncadenamiento(HashTable *hashTable);
+int minEncadenamiento(HashTable *hashTable);
 
 
 

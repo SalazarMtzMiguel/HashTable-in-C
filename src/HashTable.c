@@ -26,17 +26,7 @@ HashTable* createHashTable() {
     return hashTable;
 }
 
-unsigned int stringToInt(const char *word) {
-    unsigned int sum = 0;
-    while (*word) {
-        sum += (unsigned int)(*word);
-        word++;
-    }
-    return sum;
-}
-
-int insert(HashTable *hashTable,char* word, char *value) {
-    unsigned int key = stringToInt(word);
+int insert(HashTable *hashTable,int key, char *value) {
     unsigned int index = hash(key);
     Node *newNode = (Node*)malloc(sizeof(Node));
     newNode->key = key;
@@ -46,8 +36,7 @@ int insert(HashTable *hashTable,char* word, char *value) {
     return index;
 }
 
-int insertUniversal(HashTable *hashTable,char* word, char *value) {
-    unsigned int key = stringToInt(word);
+int insertUniversal(HashTable *hashTable,int key, char *value) {
     unsigned int index = universal_hash(key);
     Node *newNode = (Node*)malloc(sizeof(Node));
     newNode->key = key;
@@ -57,8 +46,7 @@ int insertUniversal(HashTable *hashTable,char* word, char *value) {
     return index;
 }
 
-char* search(HashTable *hashTable, char* word) {
-    unsigned key = stringToInt(word);
+char* search(HashTable *hashTable,int key) {
     unsigned int index = hash(key);
     Node *node = hashTable->table[index];
     while (node != NULL) {
@@ -70,8 +58,7 @@ char* search(HashTable *hashTable, char* word) {
     return NULL;
 }
 
-char* searchUniversal(HashTable *hashTable, char* word) {
-    unsigned key = stringToInt(word);
+char* searchUniversal(HashTable *hashTable,int key) {
     unsigned int index = universal_hash(key);
     Node *node = hashTable->table[index];
     while (node != NULL) {
@@ -83,8 +70,7 @@ char* searchUniversal(HashTable *hashTable, char* word) {
     return NULL;
 }
 
-void delete(HashTable *hashTable, char* word) {
-    unsigned int key = stringToInt(word);
+void delete(HashTable *hashTable,int key) {
     unsigned int index = hash(key);
     Node *node = hashTable->table[index];
     Node *prev = NULL;
@@ -104,8 +90,7 @@ void delete(HashTable *hashTable, char* word) {
     free(node);
 }
 
-void deleteUniversal(HashTable *hashTable, char* word) {
-    unsigned int key = stringToInt(word);
+void deleteUniversal(HashTable *hashTable,int key) {
     unsigned int index = universal_hash(key);
     Node *node = hashTable->table[index];
     Node *prev = NULL;
@@ -123,4 +108,47 @@ void deleteUniversal(HashTable *hashTable, char* word) {
     }
     free(node->value);
     free(node);
+}
+void printHashTable(HashTable *hashTable) {
+    for (int i = 0; i < M; i++) {
+        printf("Index %d: ", i);
+        Node *node = hashTable->table[i];
+        while (node != NULL) {
+            printf("(%d, %s) -> ", node->key, node->value);
+            node = node->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int maxEncadenamiento(HashTable *hashTable) {
+    int max = 0;
+    for (int i = 0; i < M; i++) {
+        int count = 0;
+        Node *node = hashTable->table[i];
+        while (node != NULL) {
+            count++;
+            node = node->next;
+        }
+        if (count > max) {
+            max = count;
+        }
+    }
+    return max;
+}
+
+int minEncadenamiento(HashTable *hashTable) {
+    int min = M; // Start with the maximum possible value
+    for (int i = 0; i < M; i++) {
+        int count = 0;
+        Node *node = hashTable->table[i];
+        while (node != NULL) {
+            count++;
+            node = node->next;
+        }
+        if (count < min) {
+            min = count;
+        }
+    }
+    return min;
 }
