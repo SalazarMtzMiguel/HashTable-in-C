@@ -4,5 +4,5 @@ project(HashFunction C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(HashFunction src/main.c
-        src/HashTable.cpp
+        src/HashTable.c
         include/HashTable.h)

@@ -55,6 +55,12 @@ build CMakeFiles/HashFunction.dir/src/main.c.obj: C_COMPILER__HashFunction_unsca
   OBJECT_DIR = CMakeFiles\HashFunction.dir
   OBJECT_FILE_DIR = CMakeFiles\HashFunction.dir\src
 
+build CMakeFiles/HashFunction.dir/src/HashTable.c.obj: C_COMPILER__HashFunction_unscanned_Debug C$:/Users/Mikec/CLionProjects/HashFunction/src/HashTable.c || cmake_object_order_depends_target_HashFunction
+  DEP_FILE = CMakeFiles\HashFunction.dir\src\HashTable.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\HashFunction.dir
+  OBJECT_FILE_DIR = CMakeFiles\HashFunction.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target HashFunction
@@ -63,7 +69,7 @@ build CMakeFiles/HashFunction.dir/src/main.c.obj: C_COMPILER__HashFunction_unsca
 #############################################
 # Link the executable HashFunction.exe
 
-build HashFunction.exe: C_EXECUTABLE_LINKER__HashFunction_Debug CMakeFiles/HashFunction.dir/src/main.c.obj
+build HashFunction.exe: C_EXECUTABLE_LINKER__HashFunction_Debug CMakeFiles/HashFunction.dir/src/main.c.obj CMakeFiles/HashFunction.dir/src/HashTable.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\HashFunction.dir
